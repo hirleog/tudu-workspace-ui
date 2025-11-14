@@ -1,5 +1,5 @@
 <div
-  class="service-card rounded-xl shadow-md overflow-hidden bg-white hover:shadow-lg transition-all duration-300 relative"
+  class="service-card rounded-xl shadow-md overflow-hidden bg-white hover:shadow-lg transition-all duration-300 relative mb-5"
 >
   <!-- HEADER -->
   <div
@@ -46,7 +46,10 @@
               background-color: #d3d3d32c;
               color: grey;
               border-radius: 25px;
-              padding: 5px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 4px 10px;
             "
           >
             <ng-content select="[order-number]"></ng-content>
@@ -70,12 +73,15 @@
   <!-- FOOTER -->
 
   <div
-    class="service-card-footer flex justify-between items-center p-3 border-t border-gray-100 bg-gray-50"
+    class="service-card-footer flex justify-center items-center p-3 border-t border-gray-100 bg-gray-50 gap-1"
   >
-    <div>
+    <div class="col-6">
       <ng-content select="[main-btn]"></ng-content>
     </div>
-    <div class="fw-semibold">
+    <div
+      class="fw-semibold col-6"
+      style="display: flex; justify-content: flex-end"
+    >
       <ng-content select="[price]"></ng-content>
     </div>
   </div>

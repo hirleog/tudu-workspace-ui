@@ -54,6 +54,12 @@ export class CardLayoutComponent implements OnInit {
         return { backgroundColor: '#ff52521c', color: '#ff5252' }; // vermelho claro
       case 'publicado':
         return { backgroundColor: '#0096ff1c', color: '#25a5ff' }; // azul suave
+      case 'recusado':
+        return { backgroundColor: '#ff52521c', color: '#ff5252' }; // vermelho claro
+      case 'em negociacao':
+        return { backgroundColor: '#ffab251f', color: '#ff9800' }; // laranja suave
+      case 'pendente':
+        return { backgroundColor: '#9a1fad1c', color: '#7e57c2' }; // roxo claro
       default:
         return { backgroundColor: '#e0e0e01c', color: '#757575' }; // cinza padrão
     }

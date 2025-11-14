@@ -142,3 +142,11 @@
   font-weight: 600;
   transition: 0.2s;
 }
+
+.status-badge i.notification-pulse {
+  animation: pulse 2s infinite;
+}
+
+:host-context(.has-notification) .status-badge i {
+  animation: pulse 2s infinite;
+}
