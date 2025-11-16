@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+  @Input() changeNavColor: boolean = false;
+
   openClose: boolean = false;
   message: string = '';
 

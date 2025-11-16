@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class CardLayoutComponent implements OnInit {
   @Input() statusPedido: string = '';
   @Input() cardTemplateIndicator: number = 0; // 1 para serviço, 2 para candidatura
+  @Input() hideHeader: boolean = false; // 1 para serviço, 2 para candidatura
 
   tags: string[] = ['Residencial', 'Urgente', 'Elétrica'];
 

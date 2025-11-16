@@ -150,3 +150,17 @@
 :host-context(.has-notification) .status-badge i {
   animation: pulse 2s infinite;
 }
+
+.service-card-header {
+  display: none; /* Escondido por padrão */
+}
+
+@media (min-width: 768px) {
+  .service-card-header {
+    display: block; /* Mostra apenas em telas grandes */
+  }
+}
+
+.service-card-header.force-show {
+  display: block; /* Força mostrar mesmo em mobile */
+}

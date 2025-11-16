@@ -1,28 +1,25 @@
-### Fluxo de BUILD para gerar o pacote .tgz usando npm pack (gera o .tgz): ###
-cd C:\Users\user\Documents\Frontend\tudü\tudu-workspace
-ng build tudu-components
-cd dist/tudu-components
-npm pack
-
 ### Fluxo para desenvolver atualizando em tempo real essa lib dentro do mfe ###
-# Para desenvolvimento com atualização em tempo real, é necessario o arquivo .tgz
-inserir no packege.json do MFE o caminho do arquivo .tgz no lugar da lib tudu-component: "x.x.x"
+# Na pasta da biblioteca
+cd tudu-workspace
 
-- cd C:\Users\user\Documents\Frontend\tudü\tudu-workspace
-- ng build tudu-components --watch
-
-# Em outro terminal, na pasta dist
-cd dist/tudu-components
+# 1. Fazer o link da biblioteca (execute uma vez)
 npm link
 
-# No MFE :
-cd C:\Users\user\Documents\Frontend\tudü\mfe-tudu-professional (pasta-raiz-do-projeto)
+# 2. Em outro terminal da lib, iniciar build em watch mode
+ng build tudu-components --watch
+
+# No projeto consumidor
+cd meu-projeto-consumidor (raiz ex: mfe-tudu-professional)
+
+# 3. Linkar a biblioteca no projeto (execute uma vez)
 npm link tudu-components
-npm run start
+
+# 4. Iniciar o projeto
+npm start
+
 
 
 ### PUBLICAR A LIB NO NPM DPS DE DESENVOLVER ###
-
 cd projects/tudu-components
 
 # Atualiza a versão
@@ -33,11 +30,14 @@ npm version minor  # 0.0.1 → 0.1.0
 # Builda a nova versão
 ng build tudu-components
 
+# Login no npm registry
+npm login
+
 # Publica no npm
 npm publish
 
 # No MFE, atualizar a versão:
 {
-  "tudu-components": "^0.0.2"
+  "tudu-components": "^0.1.0"
 }
 npm update tudu-components
