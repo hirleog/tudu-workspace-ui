@@ -29,6 +29,10 @@ export class CardLayoutComponent {
       case 'em negociacao':
       case 'negociacao':
         return { backgroundColor: 'var(--status-warning-bg)', color: 'var(--status-warning)' };
+      case 'em_andamento':
+        return { backgroundColor: 'var(--status-warning-bg)', color: 'var(--status-warning)' };
+      case 'prestador_a_caminho':
+        return { backgroundColor: 'var(--status-warning-bg)', color: 'var(--status-warning)' };
       case 'pendente':
         return { backgroundColor: 'var(--status-pending-bg)', color: 'var(--status-pending)' };
       default:
@@ -36,3 +40,4 @@ export class CardLayoutComponent {
     }
   }
 }
+
