@@ -21,6 +21,7 @@ export class CardLayoutComponent {
         return { backgroundColor: 'var(--status-teal-bg)', color: 'var(--status-teal)' };
       case 'cancelado':
       case 'expirado':
+      case 'atrasado':
         return { backgroundColor: 'var(--status-danger-bg)', color: 'var(--status-danger)' };
       case 'publicado':
         return { backgroundColor: 'var(--status-info-bg)', color: 'var(--status-info)' };
