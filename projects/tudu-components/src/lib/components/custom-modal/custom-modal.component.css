@@ -25,37 +25,10 @@
   animation: slideDown 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* --- Estrutura do Overlay --- */
-.modal-overlay-fixed {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.3s ease;
-  opacity: 1;
-}
-
-/* Classe para suavizar o desaparecimento do fundo */
-.overlay-hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
 /* --- Scroll e Conteúdo Dinâmico --- */
 .modal-scroll-area {
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-/* Expansão inteligente se houver conteúdo animado ou foco */
-.modal-scroll-area:has(.animate-fade-in),
-.modal-scroll-area:focus-within {
-  /* Mantido por compatibilidade, mas o flex-1 no HTML fará a maior parte do trabalho */
 }
 
 .modal-dynamic-content {
@@ -109,17 +82,6 @@
 
 /* --- Responsividade (Desktop) --- */
 @media (min-width: 768px) {
-  .modal-overlay-fixed {
-    align-items: center; /* Centraliza no desktop em vez de ser bottom-sheet */
-  }
-
-  .animate-slide-up,
-  .animate-slide-down {
-    border-radius: 2.5rem;
-    width: 90%;
-    margin-bottom: 0; /* Remove margem de bottom-sheet no desktop */
-  }
-
   @keyframes slideUp {
     from {
       transform: scale(0.9);
@@ -144,6 +106,6 @@
 }
 
 /* --- Trava de Scroll no Body --- */
-:host-context(body:has(.modal-overlay-fixed)) {
+:host-context(body:has(.custom-modal-root)) {
   overflow: hidden;
 }

@@ -1,46 +1,68 @@
 <div
   *ngIf="showModal"
-  class="modal-overlay-fixed"
-  [ngClass]="{ 'overlay-hide': isClosing }"
-  (click)="!isLocked && closeModal()"
+  class="custom-modal-root fixed inset-0 z-[9999] flex flex-col justify-end md:justify-center items-center pointer-events-auto"
+  (touchmove)="$event.stopPropagation()"
 >
+  <!-- Fundo escuro overlay -->
   <div
-    class="bg-surface w-full max-w-2xl rounded-t-[2.5rem] p-6 shadow-2xl border-t border-border-light flex flex-col max-h-[100dvh]"
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-500"
+    [class.opacity-0]="isClosing"
+    (click)="!isLocked && closeModal()"
+    (touchmove)="$event.preventDefault()"
+  ></div>
+
+  <!-- Container Principal do Modal -->
+  <section
+    class="relative w-full md:max-w-2xl bg-surface max-h-[100dvh] md:max-h-[85dvh] rounded-t-[2.5rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col"
     [ngClass]="isClosing ? 'animate-slide-down' : 'animate-slide-up'"
     (click)="$event.stopPropagation()"
   >
+    <!-- CABEÇALHO FIXO -->
     <div
-      class="w-full py-4 -mt-2 flex justify-center"
+      class="px-6 pt-4 pb-2 bg-surface z-10 shrink-0 flex justify-center"
       [ngClass]="isLocked ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'"
       (click)="!isLocked && closeModal()"
     >
       <div class="w-12 h-1.5 bg-medium rounded-full"></div>
     </div>
 
-    <div class="flex flex-col items-center text-center">
-      <div class="relative mb-4">
-        <div [class]="modalBgColor" class="w-20 h-20 rounded-full opacity-40"></div>
-        <div class="absolute inset-0 flex items-center justify-center">
-          <i [class]="modalIcon + ' ' + modalIconColor" class="fas text-3xl"></i>
+    <!-- ÁREA DE SCROLL -->
+    <div
+      class="flex-1 overflow-y-auto scroll-smooth overscroll-contain bg-surface custom-scrollbar px-6 pt-2"
+      style="touch-action: pan-y; overscroll-behavior: contain"
+      (touchmove)="$event.stopPropagation()"
+    >
+      <div class="flex flex-col items-center text-center w-full">
+        <!-- Ícone -->
+        <div class="relative mb-4">
+          <div [class]="modalBgColor" class="w-20 h-20 rounded-full opacity-40"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <i [class]="modalIcon + ' ' + modalIconColor" class="fas text-3xl"></i>
+          </div>
         </div>
-      </div>
 
-      <h2 class="text-2xl font-bold text-text-primary mb-2">{{ messageTitle }}</h2>
+        <!-- Título -->
+        <h2 class="text-2xl font-bold text-text-primary mb-2">{{ messageTitle }}</h2>
 
-      <div class="w-full modal-scroll-area px-2 custom-scrollbar flex-1 pb-2">
+        <!-- Corpo da Mensagem -->
         <p *ngIf="messageBody" class="text-text-secondary mb-4">{{ messageBody }}</p>
 
-        <div class="modal-dynamic-content text-left">
+        <!-- Conteúdo Dinâmico -->
+        <div class="modal-dynamic-content text-left w-full pb-2">
           <ng-content select="[optional-content]"></ng-content>
         </div>
 
-        <div *ngIf="errorDetails" class="mt-4 p-4 bg-red-50 dark:bg-red-950/20 rounded-2xl text-left border border-red-100 dark:border-red-900/30">
+        <!-- Erros -->
+        <div *ngIf="errorDetails" class="mt-4 p-4 bg-red-50 dark:bg-red-950/20 rounded-2xl text-left border border-red-100 dark:border-red-900/30 w-full mb-4">
           <p class="text-[10px] font-bold text-red-700 dark:text-red-400 uppercase mb-1">Log do sistema:</p>
           <pre class="text-[11px] text-red-600 dark:text-red-300 font-mono whitespace-pre-wrap">{{ errorDetails | json }}</pre>
         </div>
       </div>
+    </div>
 
-      <div class="mt-6 flex flex-col w-full gap-3 pb-4">
+    <!-- RODAPÉ FIXO (BOTÕES) -->
+    <div class="shrink-0 bg-surface px-6 pt-4 pb-6 border-t border-border-light/50">
+      <div class="flex flex-col w-full gap-3">
         <button
           [disabled]="disabledBtn || (priceNegotiated <= 0 && actionButtonText === 'Negociar')"
           *ngIf="actionButtonText"
@@ -64,5 +86,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </section>
 </div>
