@@ -5,7 +5,7 @@
   (click)="!isLocked && closeModal()"
 >
   <div
-    class="bg-surface w-full max-w-2xl rounded-t-[2.5rem] p-6 shadow-2xl border-t border-border-light flex flex-col"
+    class="bg-surface w-full max-w-2xl rounded-t-[2.5rem] p-6 shadow-2xl border-t border-border-light flex flex-col max-h-[100dvh]"
     [ngClass]="isClosing ? 'animate-slide-down' : 'animate-slide-up'"
     (click)="$event.stopPropagation()"
   >
@@ -27,7 +27,7 @@
 
       <h2 class="text-2xl font-bold text-text-primary mb-2">{{ messageTitle }}</h2>
 
-      <div class="w-full modal-scroll-area px-2 custom-scrollbar">
+      <div class="w-full modal-scroll-area px-2 custom-scrollbar flex-1 pb-2">
         <p *ngIf="messageBody" class="text-text-secondary mb-4">{{ messageBody }}</p>
 
         <div class="modal-dynamic-content text-left">

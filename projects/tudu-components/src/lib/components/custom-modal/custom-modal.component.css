@@ -48,16 +48,14 @@
 
 /* --- Scroll e Conteúdo Dinâmico --- */
 .modal-scroll-area {
-  max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Expansão inteligente se houver conteúdo animado ou foco */
 .modal-scroll-area:has(.animate-fade-in),
 .modal-scroll-area:focus-within {
-  max-height: 85vh;
+  /* Mantido por compatibilidade, mas o flex-1 no HTML fará a maior parte do trabalho */
 }
 
 .modal-dynamic-content {
@@ -67,17 +65,13 @@
 }
 
 /* --- Custom Scrollbar --- */
+.custom-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+  display: none;
+  width: 0;
 }
 
 /* --- Botões e Interação --- */
