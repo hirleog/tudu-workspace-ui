@@ -37,6 +37,7 @@ export class CardLayoutComponent {
       case 'em_execucao':
         return { backgroundColor: 'var(--status-warning-bg)', color: 'var(--status-warning)' };
       case 'pendente':
+      case 'aguardando_prestador':
         return { backgroundColor: 'var(--status-pending-bg)', color: 'var(--status-pending)' };
       default:
         return { backgroundColor: 'var(--status-neutral-bg)', color: 'var(--status-neutral)' };
